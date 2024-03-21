@@ -13,8 +13,12 @@ class HomePage extends StatelessWidget {
       body: Center(
         child: ElevatedButton(
           onPressed: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => const SecondPage()));
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => const SecondPage(
+                          data: 'data dari home_page',
+                        )));
           },
           child: const Text('Menuju halaman kedua'),
         ),

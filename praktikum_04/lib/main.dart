@@ -120,6 +120,41 @@ class MainApp extends StatelessWidget {
                     )
                   ],
                 ),
+              ),
+              Container(
+                margin: const EdgeInsets.all(30),
+                padding: const EdgeInsets.all(20),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(10),
+                    color: Colors.green.shade50),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Pusat Bantuan",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.greenAccent),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Bantuan"),
+                        Image.asset("../assets/img1.png")
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text("Laporkan Masalah"),
+                        Image.asset("../assets/img2.png")
+                      ],
+                    ),
+                  ],
+                ),
               )
             ],
           ),

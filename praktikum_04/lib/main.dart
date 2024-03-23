@@ -17,6 +17,56 @@ class MainApp extends StatelessWidget {
             leading: const Icon(Icons.arrow_back),
             backgroundColor: Colors.green[700],
           ),
+          body: ListView(
+            children: [
+              Container(
+                height: 250,
+                color: Colors.green,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //image
+                    Container(
+                      padding: const EdgeInsets.all(20),
+                      decoration: const BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: Colors.lightBlueAccent),
+                      child: const Icon(
+                        Icons.person,
+                        size: 30,
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 15,
+                    ),
+                    //Nama
+                    const Text(
+                      "Muhammad Husni FF",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      "21102049",
+                      style: TextStyle(
+                          color: Colors.white, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    const Text(
+                      "Mahasiswa",
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            ],
+          ),
         ));
   }
 }

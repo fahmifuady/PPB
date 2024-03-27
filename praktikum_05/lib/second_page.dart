@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 class SecondPage extends StatelessWidget {
   final String? data;
-  const SecondPage({Key? key, this.data}) : super(key: key);
+  const SecondPage({super.key, this.data});
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,7 @@ class SecondPage extends StatelessWidget {
               style: const TextStyle(fontSize: 20.0),
             ),
             Text(
-              data2.toString() ?? '',
+              data2.toString(),
               style: const TextStyle(fontSize: 20.0),
             ),
             ElevatedButton(

@@ -82,5 +82,16 @@ return function (App $app) {
         $stmt = $this->db->prepare($sql);
         $stmt->execute();
         return $response->withJson(["status"=>"success", "data"=>"1"],200);
-        });
+    });
+
+    $app->delete('/mahasiswa/edit', function(Request $request, Response $response){
+        $add_mahasiswa = $request->getParsedBody();
+        $nim = $add_mahasiswa['nim'];
+        //disini dimasukan script sql
+        $sql = "DELETE FROM mahasiswa WHERE nim=$nim";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $response->withJson(["status"=>"success", "data"=>"1"],200);
+    });
+            
 };

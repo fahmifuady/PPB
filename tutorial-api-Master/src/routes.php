@@ -42,4 +42,19 @@ return function (App $app) {
         $result = $stmt->fetchAll();
         return $response->withJson(["status"=>"success", "data"=>$result],200);
     });          
+
+    $app->post('/mahasiswa/edit', function(Request $request, Response $response){
+        $add_mahasiswa = $request->getParsedBody();
+        $nim = $add_mahasiswa['nim'];
+        $jk = $add_mahasiswa['jk'];
+        $nama = $add_mahasiswa['nama'];
+        $umur = $add_mahasiswa['umur'];
+        //disini dimasukan script sql
+        $sql = "INSERT INTO mahasiswa(nim, nama, jk, umur) VALUES
+        ($nim, '$nama', '$jk', $umur)";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $response->withJson(["status"=>"success", "data"=>"1"],200);
+    });
+        
 };

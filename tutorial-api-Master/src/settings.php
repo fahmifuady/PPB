@@ -20,7 +20,7 @@ return [
             'host' => 'localhost',
             'user' => 'root',
             'pass' => '',
-            'dbname' => 'dataku',
+            'dbname' => 'fahmi_database',
             'driver' => 'mysql'
         ]
     ],

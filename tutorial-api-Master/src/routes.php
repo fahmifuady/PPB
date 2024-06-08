@@ -56,5 +56,31 @@ return function (App $app) {
         $stmt->execute();
         return $response->withJson(["status"=>"success", "data"=>"1"],200);
     });
-        
+      
+    $app->put('/mahasiswa/edit', function(Request $request, Response $response){
+        $add_mahasiswa = $request->getParsedBody();
+        $nim = $add_mahasiswa['nim'];
+        $jk = $add_mahasiswa['jk'];
+        $nama = $add_mahasiswa['nama'];
+        $umur = $add_mahasiswa['umur'];
+        $textupdate= "";
+
+        if($nama<>null){
+            $textupdate = $textupdate.", nama='$nama'";
+        };
+
+        if($jk<>null){
+            $textupdate = $textupdate.", jk='$jk'";
+        };
+
+        if($umur<>null){
+            $textupdate = $textupdate.", umur=$umur";
+        };
+
+        //disini dimasukan script sql
+        $sql = "UPDATE mahasiswa SET nim=$nim".$textupdate." WHERE nim=$nim";
+        $stmt = $this->db->prepare($sql);
+        $stmt->execute();
+        return $response->withJson(["status"=>"success", "data"=>"1"],200);
+        });
 };

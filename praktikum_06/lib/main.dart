@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:praktikum_06/bloc/login/login_cubit.dart';
+import 'package:praktikum_06/bloc/register/register_cubit.dart';
 import 'package:praktikum_06/firebase_options.dart';
 import 'package:praktikum_06/ui/splash.dart';
 import 'package:praktikum_06/utils/routes.dart';
@@ -19,7 +20,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MultiBlocProvider(
-        providers: [BlocProvider(create: (context) => LoginCubit())],
+        providers: [
+          BlocProvider(create: (context) => LoginCubit()),
+          BlocProvider(create: (context) => RegisterCubit()),
+        ],
         child: MaterialApp(
           title: "Praktikum 6",
           debugShowCheckedModeBanner: false,

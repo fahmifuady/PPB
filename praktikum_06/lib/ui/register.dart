@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:praktikum_06/bloc/register/register_cubit.dart';
+import 'package:praktikum_06/utils/routes.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
@@ -13,7 +16,33 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
+        body: BlocListener<RegisterCubit, RegisterState>(
+      listener: (context, state) {
+        if (state is RegisterLoading) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(content: Text('Loading..')));
+        }
+        if (state is RegisterFailure) {
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(
+              content: Text(state.msg),
+              backgroundColor: Colors.red,
+            ));
+        }
+        if (state is RegisterSuccess) {
+          // context.read<AuthCubit>().loggedIn();
+          ScaffoldMessenger.of(context)
+            ..hideCurrentSnackBar()
+            ..showSnackBar(SnackBar(
+              content: Text(state.msg),
+              backgroundColor: Colors.green,
+            ));
+          Navigator.pushNamedAndRemoveUntil(context, rLogin, (route) => false);
+        }
+      },
+      child: Container(
         margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 70),
         child: ListView(
           children: [
@@ -71,7 +100,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
               height: 50,
             ),
             ElevatedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context
+                      .read<RegisterCubit>()
+                      .register(email: emailEdc.text, password: passEdc.text);
+                },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xff3D4DE0),
                     shape: RoundedRectangleBorder(
@@ -105,6 +138,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
           ],
         ),
       ),
-    );
+    ));
   }
 }

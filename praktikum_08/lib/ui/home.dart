@@ -45,7 +45,47 @@ class _HomeScreenState extends State<HomeScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          showModalBottomSheet(
+              context: context,
+              isScrollControlled: true,
+              builder: (context) {
+                return Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Form(
+                    key: _formKey,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        TextFormField(
+                            controller: titleController,
+                            decoration:
+                                const InputDecoration(hintText: 'Title')),
+                        const SizedBox(height: 10.0),
+                        SizedBox(
+                            height: 300,
+                            child: TextFormField(
+                                controller: noteController,
+                                maxLines: null, // Set this
+                                expands: true, // and this
+                                keyboardType: TextInputType.multiline,
+                                decoration: const InputDecoration(
+                                    hintText: 'Write a note', filled: true))),
+                        Padding(
+                            padding: EdgeInsets.only(
+                                bottom:
+                                    MediaQuery.of(context).viewInsets.bottom),
+                            child: SizedBox(
+                                width: MediaQuery.of(context).size.width,
+                                child: ElevatedButton(
+                                    onPressed: () {},
+                                    child: const Text('Save'))))
+                      ],
+                    ),
+                  ),
+                );
+              });
+        },
         child: const Icon(Icons.add),
       ),
     );

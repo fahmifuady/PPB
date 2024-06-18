@@ -235,6 +235,11 @@ class _HomeScreenState extends State<HomeScreen> {
                                             });
                                       } else if (value == 'delete') {
                                         //tindakan delete
+                                        String documentId = document.id;
+                                        _firestore
+                                            .collection('tasks')
+                                            .doc(documentId)
+                                            .delete();
                                       }
                                     },
                                     itemBuilder: (BuildContext context) => [

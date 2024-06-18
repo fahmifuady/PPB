@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:praktikum_06/firebase_options.dart';
+import 'package:praktikum_06/ui/splash.dart';
+import 'package:praktikum_06/utils/routes.dart';
 
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
@@ -11,12 +13,15 @@ Future<void> main() async {
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
+  const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      title: "Praktikum 6",
       debugShowCheckedModeBanner: false,
+      navigatorKey: NAV_KEY,
+      onGenerateRoute: generateRoute,
+      home: const SplashScreen(),
     );
   }
 }

@@ -151,7 +151,26 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                               GestureDetector(
                                   onTap: () {},
-                                  child: Icon(Icons.more_vert_outlined))
+                                  child: PopupMenuButton<String>(
+                                    onSelected: (value) {
+                                      if (value == 'edit') {
+                                        //tindakan edit
+                                      } else if (value == 'delete') {
+                                        //tindakan edit
+                                      }
+                                    },
+                                    itemBuilder: (BuildContext context) => [
+                                      const PopupMenuItem<String>(
+                                        value: 'edit',
+                                        child: Text('Edit'),
+                                      ),
+                                      const PopupMenuItem<String>(
+                                        value: 'delete',
+                                        child: Text('Hapus'),
+                                      ),
+                                    ],
+                                    child: Icon(Icons.more_vert_outlined),
+                                  ))
                             ],
                           ),
                           const SizedBox(height: 10.0),

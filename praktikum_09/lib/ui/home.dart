@@ -159,8 +159,82 @@ class _HomeScreenState extends State<HomeScreen> {
                                     onSelected: (value) {
                                       if (value == 'edit') {
                                         //tindakan edit
+                                        showModalBottomSheet(
+                                            context: context,
+                                            isScrollControlled: true,
+                                            builder: (context) {
+                                              return Padding(
+                                                padding:
+                                                    const EdgeInsets.all(16.0),
+                                                child: Form(
+                                                  key: _formKey,
+                                                  child: Column(
+                                                    mainAxisSize:
+                                                        MainAxisSize.min,
+                                                    children: [
+                                                      TextFormField(
+                                                        controller: titleEdc,
+                                                      ),
+                                                      const SizedBox(
+                                                          height: 10.0),
+                                                      SizedBox(
+                                                          height: 300,
+                                                          child: TextFormField(
+                                                            controller: noteEdc,
+                                                            maxLines:
+                                                                null, // Set this
+                                                            expands:
+                                                                true, // and this
+                                                            keyboardType:
+                                                                TextInputType
+                                                                    .multiline,
+                                                          )),
+                                                      Padding(
+                                                          padding: EdgeInsets.only(
+                                                              bottom: MediaQuery
+                                                                      .of(
+                                                                          context)
+                                                                  .viewInsets
+                                                                  .bottom),
+                                                          child: SizedBox(
+                                                              width:
+                                                                  MediaQuery.of(
+                                                                          context)
+                                                                      .size
+                                                                      .width,
+                                                              child:
+                                                                  ElevatedButton(
+                                                                      onPressed:
+                                                                          () async {
+                                                                        if (_formKey
+                                                                            .currentState!
+                                                                            .validate()) {
+                                                                          try {
+                                                                            await _firestore.collection('tasks').doc(document.id).update({
+                                                                              'title': titleEdc.text,
+                                                                              'note': noteEdc.text,
+                                                                              'timestamp': FieldValue.serverTimestamp(),
+                                                                            });
+                                                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                                              const SnackBar(content: Text('Note berhasil diperbarui')),
+                                                                            );
+                                                                            Navigator.pop(context);
+                                                                          } catch (e) {
+                                                                            ScaffoldMessenger.of(context).showSnackBar(
+                                                                              SnackBar(content: Text('$e')),
+                                                                            );
+                                                                          }
+                                                                        }
+                                                                      },
+                                                                      child: const Text(
+                                                                          'Save'))))
+                                                    ],
+                                                  ),
+                                                ),
+                                              );
+                                            });
                                       } else if (value == 'delete') {
-                                        //tindakan edit
+                                        //tindakan delete
                                       }
                                     },
                                     itemBuilder: (BuildContext context) => [

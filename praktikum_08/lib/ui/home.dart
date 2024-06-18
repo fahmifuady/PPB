@@ -117,6 +117,39 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         child: const Icon(Icons.add),
       ),
+      body: StreamBuilder<QuerySnapshot>(
+        stream: _firestore.collection('tasks').orderBy('timestamp').snapshots(),
+        builder: (context, snapshot) {
+          if (!snapshot.hasData) {
+            return const CircularProgressIndicator();
+          }
+          return Padding(
+            padding: const EdgeInsets.all(10.0),
+            child: ListView(
+              children: snapshot.data!.docs.map((DocumentSnapshot document) {
+                Map<String, dynamic> data =
+                    document.data()! as Map<String, dynamic>;
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      data['title'],
+                      maxLines: 1,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w700, fontSize: 20.0),
+                    ),
+                    Text(
+                      data['note'],
+                      maxLines: 6,
+                      style: const TextStyle(fontSize: 17.0),
+                    ),
+                  ],
+                );
+              }).toList(),
+            ),
+          );
+        },
+      ),
     );
   }
 }

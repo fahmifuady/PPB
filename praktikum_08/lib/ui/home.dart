@@ -81,7 +81,33 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: SizedBox(
                                 width: MediaQuery.of(context).size.width,
                                 child: ElevatedButton(
-                                    onPressed: () {},
+                                    onPressed: () async {
+                                      if (_formKey.currentState!.validate()) {
+                                        try {
+                                          DocumentReference docRef =
+                                              await _firestore
+                                                  .collection('tasks')
+                                                  .add({
+                                            'title': titleController.text,
+                                            'note': noteController.text,
+                                            'timestamp':
+                                                FieldValue.serverTimestamp(),
+                                          });
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            const SnackBar(
+                                                content:
+                                                    Text('Note ditambahkan')),
+                                          );
+                                          Navigator.pop(context);
+                                        } catch (e) {
+                                          ScaffoldMessenger.of(context)
+                                              .showSnackBar(
+                                            SnackBar(content: Text('$e')),
+                                          );
+                                        }
+                                      }
+                                    },
                                     child: const Text('Save'))))
                       ],
                     ),

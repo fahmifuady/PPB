@@ -129,6 +129,10 @@ class _HomeScreenState extends State<HomeScreen> {
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data()! as Map<String, dynamic>;
+                final titleEdc =
+                    TextEditingController(text: data['title'].toString());
+                final noteEdc =
+                    TextEditingController(text: data['note'].toString());
                 return SizedBox(
                   height: 170.0,
                   width: MediaQuery.of(context).size.width,

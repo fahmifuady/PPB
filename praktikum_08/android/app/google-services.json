@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663587863288",
+    "project_id": "praktik-ppb",
+    "storage_bucket": "praktik-ppb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663587863288:android:9eb32eb2bbbe5fb68a590d",
+        "android_client_info": {
+          "package_name": "com.example.praktikum_06"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDo80ZtvuVnTfg6qUYbqf9Uksu47aOkwak"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

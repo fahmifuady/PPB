@@ -129,21 +129,40 @@ class _HomeScreenState extends State<HomeScreen> {
               children: snapshot.data!.docs.map((DocumentSnapshot document) {
                 Map<String, dynamic> data =
                     document.data()! as Map<String, dynamic>;
-                return Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      data['title'],
-                      maxLines: 1,
-                      style: const TextStyle(
-                          fontWeight: FontWeight.w700, fontSize: 20.0),
+                return SizedBox(
+                  height: 170.0,
+                  width: MediaQuery.of(context).size.width,
+                  child: Card(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                child: Text(data['title'],
+                                    maxLines: 1,
+                                    style: const TextStyle(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 20.0)),
+                              ),
+                              GestureDetector(
+                                  onTap: () {},
+                                  child: Icon(Icons.more_vert_outlined))
+                            ],
+                          ),
+                          const SizedBox(height: 10.0),
+                          Text(data['note'],
+                              textAlign: TextAlign.justify,
+                              maxLines: 5,
+                              style: const TextStyle(fontSize: 17.0)),
+                        ],
+                      ),
                     ),
-                    Text(
-                      data['note'],
-                      maxLines: 6,
-                      style: const TextStyle(fontSize: 17.0),
-                    ),
-                  ],
+                  ),
                 );
               }).toList(),
             ),
